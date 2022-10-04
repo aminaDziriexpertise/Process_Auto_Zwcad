@@ -1,0 +1,33 @@
+1664871519932	geckodriver	INFO	Listening on 127.0.0.1:65050
+1664871523034	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "65051" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\adziri\\AppData\\Local\\Temp\\rust_mozprofilebj6NCW"
+1664871523283	Marionette	INFO	Marionette enabled
+1664871523286	Marionette	INFO	Listening on port 65060
+Read port: 65060
+WebDriver BiDi listening on ws://127.0.0.1:65051
+1664871523426	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\adziri\\AppData\\Local\\Temp\\rust_mozprofilebj6NCW\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:65051/devtools/browser/80bb2241-5566-4600-b714-f7fb82b6980d
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://odoo-r7.gexpertise.fr."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://odoo-r7.gexpertise.fr."
+JavaScript warning: https://odoo-r7.gexpertise.fr/web/content/267219-72a3bf7/web.assets_backend.js, line 3726: unreachable code after return statement
+JavaScript warning: https://odoo-r7.gexpertise.fr/web/content/267219-72a3bf7/web.assets_backend.js, line 3726: unreachable code after return statement
+1664872368596	geckodriver	INFO	Listening on 127.0.0.1:65475
+1664872371687	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "65476" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\adziri\\AppData\\Local\\Temp\\rust_mozprofile1VhvAG"
+1664872371940	Marionette	INFO	Marionette enabled
+1664872371943	Marionette	INFO	Listening on port 65486
+WebDriver BiDi listening on ws://127.0.0.1:65476
+Read port: 65486
+1664872372121	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\adziri\\AppData\\Local\\Temp\\rust_mozprofile1VhvAG\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:65476/devtools/browser/124fe160-82b9-465a-9253-7cb2d87e8234
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://odoo-r7.gexpertise.fr."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://odoo-r7.gexpertise.fr."
+JavaScript warning: https://odoo-r7.gexpertise.fr/web/content/267219-72a3bf7/web.assets_backend.js, line 3726: unreachable code after return statement
+JavaScript warning: https://odoo-r7.gexpertise.fr/web/content/267219-72a3bf7/web.assets_backend.js, line 3726: unreachable code after return statement
+1664872383933	geckodriver	INFO	Listening on 127.0.0.1:49154
+1664872387020	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "49155" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\adziri\\AppData\\Local\\Temp\\rust_mozprofileJpUp6E"
+1664872387268	Marionette	INFO	Marionette enabled
+1664872387273	Marionette	INFO	Listening on port 49164
+Read port: 49164
+WebDriver BiDi listening on ws://127.0.0.1:49155
+1664872387408	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
