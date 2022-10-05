@@ -65,9 +65,12 @@
 ;=========================================================================    
     ;; See which radio button the user clicks:
 
-    (action_tile "SwissBlack" "(setq swissVar $value)(CHANGESTYLESimplex)")
-    (action_tile "Arial" "(setq ArialVar $value)(CHANGESTYLEArial1)")
-    (action_tile "Roman" "(setq romanVar $value)(CHANGESTYLERoman1)")
+    ;;(action_tile "SwissBlack" "(setq swissVar $value)(CHANGESTYLESimplex)")
+  (action_tile "SwissBlack" "(CHANGESTYLESimplex)")
+    ;(action_tile "Arial" "(setq ArialVar $value)(CHANGESTYLEArial1)")
+  (action_tile "Arial" "(CHANGESTYLEArial1)")
+    ;(action_tile "Roman" "(setq romanVar $value)(CHANGESTYLERoman1)")
+  (action_tile "Roman" "(CHANGESTYLERoman1)")
      ; Lookup table:
 
     (if (= swissVar "1") (setq vars 0))
@@ -105,13 +108,18 @@
  
     (action_tile "extract" "(CALL)")
     (action_tile "export" "(EXPORT)")
-    (action_tile "next" "(test)")
+   ; (action_tile "next" "(test)")
     (action_tile "SDP" "(sdp)" )
     (action_tile "SDT" "(sdt)")
   
-  
-  
-
+    (action_tile "next"
+                (vl-prin1-to-string
+                   '(
+                           ((lambda ( f ) (if f (openDWG f))) (getfiled "Select File" "" "" 16))
+                        
+                    )
+                )
+            )
   (start_dialog)
   (unload_dialog dcl_id)
   (princ)
@@ -253,6 +261,23 @@
 (extract_Cree__le)
 (princ "\n")
 (extract_Cadastre)
+
+(setq livrable (extract_nom_livrable))
+;(setq address(extract_address))
+  
+  
+(setq filepath (strcat (getvar "dwgprefix") (vl-filename-base (getvar "dwgname")) ".csv"))
+  ;; save to csv
+  (if
+    (WriteCSV  livrable filepath)
+   ;; (WriteCSV total_val_text_sdp filepath)  ; input doit etre liste mais pas un seul valeur 
+
+    (progn (princ "\nSaved as: ") (princ  filepath))
+    (progn (princ "\nSomething went wrong"))
+  )
+ 
+  (princ)
+
 );defun
 ;=========================================================================
   ;; get les champs qu'on doit les exporter apartir de URL odoo:
@@ -384,6 +409,27 @@
 ;=========================================================================
   ;; get file DWG :
 ;=========================================================================  
+
+;; Open  -  Lee Mac
+;; A wrapper for the 'Open' method of the Shell Object
+;; target - [int/str] File, folder or ShellSpecialFolderConstants enum
+
+(defun openDWG ( target / rtn shl )
+    (if (and (or (= 'int (type target)) (setq target (findfile target)))
+             (setq shl (vla-getinterfaceobject (vlax-get-acad-object) "shell.application"))
+        )
+        (progn
+            (setq rtn (vl-catch-all-apply 'vlax-invoke (list shl 'open target)))
+            (vlax-release-object shl)
+            (if (vl-catch-all-error-p rtn)
+                (prompt (vl-catch-all-error-message rtn))
+                t
+            )
+        )
+    )
+)
+
+
 (defun LM:getfiles ( msg def ext / *error* dch dcl des dir dirdata lst rtn )
 
     (defun *error* ( msg )
@@ -476,6 +522,7 @@
                     )
                 )
             )
+            ;(command "_.OPEN" "dir")
             (setq lst (LM:getfiles:updatefilelist dir ext nil))
             (mode_tile "add" 1)
             (mode_tile "del" 1)
@@ -524,6 +571,7 @@
                                         )
                                     )
                                     (if (vl-every '(lambda ( x ) (vl-file-directory-p (strcat dir "\\" x))) itm)
+                                     
                                         (mode_tile "add" 1)
                                         (mode_tile "add" 0)
                                     )
@@ -549,9 +597,11 @@
                         )
                     )
                 )
+             
             )
 
             (action_tile "add"
+                
                 (vl-prin1-to-string
                    '(
                         (lambda ( / itm )
@@ -566,10 +616,12 @@
                                       lst (LM:getfiles:updatefilelist dir ext rtn)
                                 )
                             )
+                         
                             (mode_tile "add" 1)
                             (mode_tile "del" 1)
                         )
                     )
+                  
                 )
             )
 
@@ -597,6 +649,8 @@
     (*error* nil)
     rtn
 )
+
+
 
 (defun LM:getfiles:listbox ( key lst )
     (start_list key)
@@ -785,7 +839,12 @@
                         )
                         (setq slf (vlax-get-property fld 'self)
                               pth (LM:getfiles:fixdir (vlax-get-property slf 'path))
+                              
                         )
+                      
+                        
+                 
+                        
                     )
                 )
             )
